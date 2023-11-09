@@ -1,17 +1,20 @@
 <?php
-    include 'conexion.php';
 
-    $nombre = $_POST["nombre"];
-    $semestre = $_POST["semestre"];
-    $especialidad = $_POST["especialidad"];
+include 'conexion.php';
 
-    $sql = "INSERT INTO materias(nombre, semestre, especialidad)VALUES('".$nombre"' ,'".$semestre"','".$especialidad"')";
+$nombre = $_POST["nombre"];
+$semestre = $_POST["semestre"];
+$especialidad = $_POST["especialidad"];
 
-    if($conexion->query($sql) === TRUE){
-        header("Location: consultarmateria.php");
-        $conexion->close();
-    } else {
-        echo "<h2>Ocurrio un error</h2> <p>Error: " .$sql. "<br>" . $conexion_error . "</p>";
-        echo "<h3><a href='ConsultarAlumnos.php'>Regresar a alumnos</a></h3>";
-    }
+$sql = "INSERT INTO materias(nombre, semestre, especialidad) VALUES ('".$nombre."', ".$semestre.",'".$especialidad."')";
+
+if($conexion->query($sql) === TRUE){
+    header("Location: ConsultarMaterias.php");
+    $conexion->close();
+    exit;
+} else {
+    echo "<h2>Ocurrió un error</h2> <p>Error: " .$sql . "<br>" . $conexion->error . "</p>";
+    echo "<h3><a href='ConsultarMaterias.php'>Regresar a materias</a></h3>";
+}
+
 ?>
